@@ -1,0 +1,68 @@
+#set( $adminRoot = '/admin')
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新增厂商报价</title>
+<link rel="stylesheet" type="text/css" href="$adminRoot/css/bootstrap.min.css"/>
+</head>
+<body>
+#if($err_msg)
+$err_msg
+#else
+	<div class="well">
+    	<ul class="breadcrumb" style="width:80%;margin-bottom:0;">
+			<li>当前位置: 厂商报价管理<span class="divider">/</span></li>
+			<li><a href="$adminRoot/quotation/manufacturers/list/1">厂商报价列表</a> <span class="divider">/</span></li>
+			<li class="active">新增厂商报价</li>
+		</ul>
+    </div>
+    <form class="form-horizontal well" method="post" action="$adminRoot/quotation/manufacturers/create.do" >
+  		<div class="control-group">
+    		<label class="control-label" for="name">机床序列号：</label>
+    		<div class="controls">
+      			<input type="text" id="name" name="name">
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" for="name">有效日期：</label>
+    		<div class="controls">
+      			<input type="text" id="name1" name="name1">
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" for="order">报价日期：</label>
+    		<div class="controls">
+      			<input type="text" id="name2" name="name2" >
+    		</div>
+  		</div>
+  		<div class="control-group">
+    		<label class="control-label" for="order">总价格：</label>
+    		<div class="controls">
+      			<input type="text" id="name3" name="name3" >
+    		</div>
+  		</div>
+  		<div class="control-group">
+    		<label class="control-label" for="order">货币名称：</label>
+    		<div class="controls">
+      			<input type="text" id="name4" name="name4" >
+    		</div>
+  		</div>
+  		<div class="control-group">
+    		<label class="control-label" for="order">备注：</label>
+    		<div class="controls">
+      			<input type="text" id="name5" name="name5" >
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" ></label>
+    		<div class="controls">
+                <input type="submit" class="btn offset6 btn-primary btn-large" value="提交">
+    		</div>
+  		</div>
+	</form>
+<script src="$adminRoot/js/jquery.min.js"></script>
+<script src="$adminRoot/js/bootstrap.min.js"></script>
+#end
+</body>
+</html>

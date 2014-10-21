@@ -1,0 +1,71 @@
+#if($pager)
+#set( $pagesize = ${pager.pageSize} )
+#set( $prevpage = ${pager.page} - 1 )
+#set( $nextpage = ${pager.page} + 1 )
+#set( $pagecount1 = ${pager.pageCount} - 3 )
+#set( $pagecount2 = ${pager.pageCount} - 1 )
+<div class="pagination pagination-centered">
+	<ul>
+		#if( ${pager.page} == 1 )
+		<li class="disabled"><a>上一页</a></li>
+		#else
+		<li><a href="$prevpage$!search">上一页</a></li>
+		#end
+
+		#if( ${pager.pageCount} <= 9  )
+        	#foreach( $page in [1..${pager.pageCount}] )
+        	    #if( ${pager.page} == $page )
+        	    <li class="active"><a>$page</a></li>
+        	    #else
+        	    <li><a href="$page$!search">$page</a></li>
+        	    #end
+        	#end
+		#else
+            #if( ${pager.page} <= 4 || ${pager.page} >= $pagecount1)
+                #foreach( $page in [1..4] )
+	                #if( ${pager.page} == $page )
+	                <li class="active"><a>$page</a></li>
+	                #else
+	                <li><a href="$page$!search">$page</a></li>
+	                #end
+                #end
+                <li class="disabled"><a>...</a></li>
+                #foreach( $page in [$pagecount1..${pager.pageCount}] )
+                    #if( ${pager.page} == $page )
+                    <li class="active"><a>$page</a></li>
+                    #else
+                    <li><a href="$page$!search">$page</a></li>
+                    #end
+                #end
+            #else
+                <li><a href="1$!search">1</a></li>
+                <li><a href="2$!search">2</a></li>
+                <li class="disabled"><a>...</a></li>
+                <li><a href="$prevpage$!search">$prevpage</a></li>
+                <li class="active"><a>${pager.page}</a></li>
+                <li><a href="$nextpage$!search">$nextpage</a></li>
+                <li class="disabled"><a>...</a></li>
+                <li><a href="$pagecount2$!search">$pagecount2</a></li>
+                <li><a href="$pager.pageCount$!search">${pager.pageCount}</a></li>
+            #end
+		#end
+		#if( ${pager.page} == ${pager.pageCount} )
+        <li class="disabled"><a>下一页</a></li>
+        #else
+        <li><a href="$nextpage$!search">下一页</a></li>
+		#end
+	</ul>
+	#if($!{goto})
+		<br>
+		<p>跳转到第 <input id='PageNo' size='1' value="${pager.page}"> 页 <input type='button' onclick='return GoTo();' value='GO'></p>
+		<script>
+		function GoTo(){
+ 		var PageNo=document.getElementById("PageNo").value;
+ 		var url = "";
+ 		url =  "$!goto/"+ PageNo + "$!search";
+		window.open(url, '_self')
+		}
+		</script>
+	#end
+</div>
+#end

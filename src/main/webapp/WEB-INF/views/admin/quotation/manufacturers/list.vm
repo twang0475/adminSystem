@@ -1,0 +1,57 @@
+#set( $adminRoot = '/admin')
+#set( $search = "?orderby=$orderby" )
+#set( $goto = "$adminRoot/quotation/manufacturers/list" )
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>厂家报价单</title>
+<link rel="stylesheet" type="text/css" href="$adminRoot/css/bootstrap.min.css"/>
+</head>
+<body>
+	<div class="well">
+       	<form class="form-search pull-left" action="$adminRoot/quotation/manufacturers/search.do" method="POST">
+			<input type="text" class="input-medium search-query" name ="keyword" placeholder="机床序列号"  value="" required>
+			<button type="submit" class="btn">搜索</button>
+		</form>
+ 	</div>
+    <div class="well">
+		<a class="btn btn-primary" href="$adminRoot/quotation/manufacturers/add.do">新增厂商报价</a>
+	</div>
+	<div class="well">
+       	<form class="form-search pull-right" action="$adminRoot/quotation/manufacturers/list/1" method="POST">
+       		<select id="orderby" name="orderby" class="input-medium search-query">
+            	<option value="1" #if($orderby == '1') selected="selected"  #end>机床序列号</option>
+            	<option value="2" #if($orderby == '2') selected="selected"  #end>更新时间</option>
+        	</select>
+			<button type="submit" class="btn">排序</button>
+		</form>
+		<label  for="orderby">排序方式：当前为#if($orderby == '1')机床序列号  #elseif($orderby == '2')更新时间#end </label>
+    </div>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>机床序列号</th>
+				<th>有效日期</th>
+				<th>报价日期</th>
+				<th>总价</th>
+				<th>货币</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td style="color:#f00"><a href="$adminRoot/quotation/manufacturers/view.do"><strong>XXXXXX</strong> </a></td>
+				<td>2014-12-21</td>
+				<td>2014-01-01</td>
+				<td>100000</td>
+				<td>人民币</td>
+				<td>测试</td>
+			</tr>
+		</tbody>
+	</table>
+	#parse("$adminRoot/pagination.vm")
+<script src="$adminRoot/js/jquery.min.js"></script>
+<script src="$adminRoot/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+#set( $adminRoot = '/admin' )
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="Chrome=1,IE=edge"/>
+	<title>管理后台</title>
+	<link rel="stylesheet" type="text/css" href="$adminRoot/css/bootstrap.min.css"/>
+	<style>
+		.sidebar-nav {padding: 9px 0;}
+		.navbar .navbar-inner {padding-right: 0;padding-left: 0;-webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;}
+		.nav-list .nav-header {font-size: 14px;}
+	</style>
+</head>
+<body>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<span class="brand">管理后台</span>
+			
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list" id="sidebar-nav">
+					<li class="nav-header">客户管理</li>
+					<li><a href="$adminRoot/client/list/1" target="main">客户列表</a></li>
+				</ul>
+				<ul class="nav nav-list" id="sidebar-nav">
+					<li class="nav-header">报价单管理</li>
+					<li><a href="$adminRoot/quotation/manufacturers/list/1" target="main">厂家报价单</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="span10">
+			<iframe height="auto" width="100%" frameborder="no" border="0" name="main" id="main-frame" src=""></iframe>
+		</div>
+	</div>
+</div>
+<script src="$adminRoot/js/jquery.min.js"></script>
+<script src="$adminRoot/js/bootstrap.min.js"></script>
+<script>
+	!function(){
+		var mainFrame = $('#main-frame'),
+			sidebarNav = $('#sidebar-nav'),
+			activeNav;
+
+		sidebarNav.delegate('a', 'click', function(){
+			activeNav && activeNav.removeClass('active');
+			activeNav = $(this).parent();
+			activeNav.addClass('active');
+		});
+
+		mainFrame.height($(document).height()-86);
+	}()
+</script>
+</body>
+</html>

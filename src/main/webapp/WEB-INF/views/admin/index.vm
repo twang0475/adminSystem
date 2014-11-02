@@ -33,6 +33,10 @@
 					<li class="nav-header">报价单管理</li>
 					<li><a href="$adminRoot/quotation/manufacturers/list/1" target="main">厂家报价单</a></li>
 				</ul>
+				<ul class="nav nav-list" id="sidebar-nav">
+					<li class="nav-header">用户询价管理</li>
+					<li><a href="$adminRoot/quotation/inquiries/list/1" target="main">用户询价列表</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="span10">

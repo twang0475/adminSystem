@@ -1,0 +1,72 @@
+#set( $adminRoot = '/admin')
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>机床信息</title>
+<link rel="stylesheet" type="text/css" href="$adminRoot/css/bootstrap.min.css"/>
+</head>
+<body>
+#if($err_msg)
+$err_msg
+#else
+	<div class="well">
+    	<ul class="breadcrumb" style="width:80%;margin-bottom:0;">
+			<li>当前位置: 机床信息管理<span class="divider">/</span></li>
+			<li><a href="$adminRoot/machine/list/1">机床信息列表</a> <span class="divider">/</span></li>
+			<li class="active">机床信息</li>
+		</ul>
+    </div>
+    <form class="form-horizontal well" method="post" action="$adminRoot/machine/update.do">
+  		<div class="control-group">
+    		<label class="control-label" for="name">客户简称：</label>
+    		<div class="controls">
+      			<input type="text" id="name" name="name" value="TEST">
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" for="fullName">发货日期：</label>
+    		<div class="controls">
+      			<input type="text" id="fullName" name="fullName" value="2000-01-01">
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" for="descriptioon">描述：</label>
+    		<div class="controls">
+      			<input type="text" id="descriptioon" name="descriptioon" value="TEST">
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" ></label>
+    		<div class="controls">
+                <input type="submit" class="btn offset6 btn-primary btn-large" value="更新">
+    		</div>
+  		</div>
+	</form>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>备件号</th>
+				<th>备注信息</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>V906171</td>
+				<td>2000-01-01</td>
+			</tr>
+			<tr>
+				<td style="color:#f00"><a href="$adminRoot/machine/view.do"><strong>518-18</strong> </a></td>
+				<td>2000-01-01</td>
+			</tr>
+			<tr>
+				<td style="color:#f00"><a href="$adminRoot/machine/view.do"><strong>518-18</strong> </a></td>
+				<td>2000-01-01</td>
+			</tr>
+		</tbody>
+	</table>
+<script src="$adminRoot/js/jquery.min.js"></script>
+<script src="$adminRoot/js/bootstrap.min.js"></script>
+#end
+</body>
+</html>

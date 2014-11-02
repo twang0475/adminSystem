@@ -50,4 +50,21 @@ public class QuotationController {
 
 		return "/admin/quotation/manufacturers/view";
 	}
+
+	@RequestMapping("/inquiries/list/{page}")
+	public String inquiriesList(Model model, @RequestParam(required = false) String machineNo,
+			@RequestParam(required = false) Integer orderby, @PathVariable(value = "page") Integer page) {
+		Map<String, Object> filter = new HashMap<String, Object>();
+		int count = 0;
+		Pager pager = new Pager(count, page);
+		model.addAttribute("count", count);
+		model.addAttribute("pager", pager);
+		return "/admin/quotation/inquiries/list";
+	}
+
+	@RequestMapping("/inquiries/add")
+	public String addInquiry(Model model) {
+
+		return "/admin/quotation/inquiries/add";
+	}
 }

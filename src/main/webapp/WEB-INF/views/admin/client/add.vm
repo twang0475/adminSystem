@@ -1,0 +1,50 @@
+#set( $adminRoot = '/admin')
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新增客户信息</title>
+<link rel="stylesheet" type="text/css" href="$adminRoot/css/bootstrap.min.css"/>
+</head>
+<body>
+#if($err_msg)
+$err_msg
+#else
+	<div class="well">
+    	<ul class="breadcrumb" style="width:80%;margin-bottom:0;">
+			<li>当前位置: 客户信息管理<span class="divider">/</span></li>
+			<li><a href="$adminRoot/client/list/1">客户信息列表</a> <span class="divider">/</span></li>
+			<li class="active">新增客户信息</li>
+		</ul>
+    </div>
+    <form class="form-horizontal well" method="post" action="$adminRoot/client/create.do" >
+  		<div class="control-group">
+    		<label class="control-label" for="name">客户简称（唯一）：</label>
+    		<div class="controls">
+      			<input type="text" id="name" name="name">
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" for="fullName">全称：</label>
+    		<div class="controls">
+      			<input type="text" id="fullName" name="fullName">
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" for="descriptioon">描述：</label>
+    		<div class="controls">
+      			<input type="text" id="descriptioon" name="descriptioon" >
+    		</div>
+  		</div>
+        <div class="control-group">
+    		<label class="control-label" ></label>
+    		<div class="controls">
+                <input type="submit" class="btn offset6 btn-primary btn-large" value="提交">
+    		</div>
+  		</div>
+	</form>
+<script src="$adminRoot/js/jquery.min.js"></script>
+<script src="$adminRoot/js/bootstrap.min.js"></script>
+#end
+</body>
+</html>

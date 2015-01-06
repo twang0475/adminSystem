@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.landis.throughout.dao.MachineInfoDao" >
+    
+    <sql id="columns">
+		id, client_id, serial_no, model, plant, shipped_date, create_time, update_time
+	</sql>
+	
+	<resultMap id="MachineInfoMap" type="MachineInfo" >
+        <result column="id" property="id" />
+        <result column="client_id" property="clientId" />
+        <result column="serial_no" property="serialNo" />
+        <result column="model" property="model" />
+        <result column="plant" property="plant" />
+        <result column="shipped_date" property="shippedDate" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+    
+   <insert id="save" parameterType="MachineInfo" useGeneratedKeys="true" keyProperty="machine.id">
+		INSERT INTO machine_info
+		SET
+			client_id=#{machine.clientId},
+			serial_no=#{machine.serialNo},
+			model=#{machine.model},
+			plant=#{machine.plant},
+			shipped_date=#{machine.shippedDate},
+			create_time=#{machine.createTime},
+			update_time=#{machine.updateTime}
+	</insert>
+	
+	<select id="loadMachineInfo" resultMap="MachineInfoMap">
+		select <include refid="columns" />
+		from machine_info
+		where id = #{machineId}
+	</select>
+    
+</mapper>

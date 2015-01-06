@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.landis.throughout.dao.ClientInfoDao" >
+    
+    <sql id="columns">
+		id, short_name, full_name, create_time, update_time
+	</sql>
+	
+	<sql id="client_info_deep_column_list">
+		client_info.id AS id,
+		client_info.short_name AS short_name,
+		client_info.full_name AS full_name,
+		client_info.create_time AS create_time,
+		client_info.update_time AS update_time,
+		
+		machine_info.id AS m_id,
+		machine_info.serial_no AS m_serial_no,
+		machine_info.model AS m_model,
+		machine_info.plant AS m_plant,
+		machine_info.shipped_date AS m_shipped_date,
+		machine_info.create_time AS m_create_time,
+		machine_info.update_time AS m_update_time
+
+		FROM client_info
+			LEFT OUTER JOIN machine_info ON client_info.id = machine_info.client_id
+	</sql>
+	
+	<resultMap id="ClientInfoMap" type="ClientInfo" >
+        <result column="id" property="id" />
+        <result column="short_name" property="shortName" />
+        <result column="full_name" property="fullName" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <collection property="machines" ofType="MachineInfo">
+			<id property="id" column="m_id" />
+			<result property="clientId" column="id" />
+			<result property="serialNo" column="m_serial_no" />
+			<result property="model" column="m_model" />
+			<result property="plant" column="m_plant" />
+			<result property="shippedDate" column="m_shipped_date" />
+			<result property="createTime" column="m_create_time" />
+			<result property="updateTime" column="m_update_time" />
+		</collection>
+    </resultMap>
+    
+   <insert id="save" parameterType="ClientInfo" useGeneratedKeys="true" keyProperty="client.id">
+		INSERT INTO client_info
+		SET
+			short_name=#{client.shortName},
+			full_name=#{client.fullName},
+			create_time=#{client.createTime},
+			update_time=#{client.updateTime}
+	</insert>
+	
+	<select id="loadClientInfo" resultMap="ClientInfoMap">
+		select <include refid="client_info_deep_column_list" />
+		where client_info.id = #{clientId}
+	</select>
+	
+	<select id="loadClientInfoByShortName" resultMap="ClientInfoMap">
+		select <include refid="client_info_deep_column_list" />
+		where client_info.short_name = #{shortName}
+	</select>
+    
+</mapper>
